@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <main>
+      <!-- Search Box -->
       <div class="search-box">
         <input
           type="text"
@@ -11,6 +12,7 @@
         />
       </div>
 
+      <!-- Weather Module -->
       <div class="weather-wrap" v-if="typeof weather.main != 'undefined'">
         <div class="location-box">
           <div class="location">{{weather.name}}</div>
@@ -23,6 +25,8 @@
           <div style="display:none" class="weather">{{weather.weather[0].main}}</div>
         </div>
       </div>
+
+      <!-- No information block -->
       <div
         class="no-information"
         v-if="typeof weather.main == 'undefined'"
