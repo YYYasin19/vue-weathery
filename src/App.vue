@@ -35,6 +35,8 @@
 
 <script>
 import moment from "moment";
+import keys from "../keys";
+
 function currentDate() {
   return moment().format("dddd[, ] Do MMM YYYY [@] hh:mm");
 }
@@ -71,7 +73,7 @@ export default {
   name: "App",
   data: function data() {
     return {
-      api_key: "3658e6b81186aea838dec8bc51ae6b67",
+      api_key: keys.openweather.api_key,
       url_base: "https://api.openweathermap.org/data/2.5/",
       query: "",
       weather: {},
