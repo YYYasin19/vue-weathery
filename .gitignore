@@ -23,6 +23,7 @@ pnpm-debug.log*
 
 ## Other things according to internet sources
 /public
+temp
 
 ### Log files
 npm-debug.log*
