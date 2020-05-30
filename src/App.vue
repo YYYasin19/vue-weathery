@@ -94,7 +94,7 @@ export default {
 <style>
 :root {
   --border-radius: 8px;
-  --trans-speed: 0.3s;
+  --trans-speed: all 0.3s ease;
   --hover-bg-color: rgba(255, 255, 255, 0.75);
 }
 * {
