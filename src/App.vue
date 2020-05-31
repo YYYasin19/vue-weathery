@@ -115,7 +115,8 @@ export default {
 }
 
 body {
-  font-family: "Avenir Next", "Helvetica";
+  font-family: Tahoma, "Century Gothic", CenturyGothic, Geneva, AppleGothic,
+    sans-serifs;
 }
 
 #app {
