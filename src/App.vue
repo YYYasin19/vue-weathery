@@ -51,9 +51,11 @@ function currentDate() {
 }
 /** this method gets the weather */
 function fetchWeather(e) {
-  if (e.key == "Enter" && this.query != "") {
+  if (e.key == "Enter" && this.query.trim() != "") {
     // create call string
-    let call = `${this.url_base}weather?q=${this.query}&units=metric&appid=${this.api_key}`;
+    let call = `${
+      this.url_base
+    }weather?q=${this.query.trim()}&units=metric&appid=${this.api_key}`;
 
     // execute async call and update ui
     fetch(call)
