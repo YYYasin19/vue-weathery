@@ -48,7 +48,7 @@ function currentDate() {
 }
 /** this method gets the weather */
 function fetchWeather(e) {
-  if (e.key == "Enter") {
+  if (e.key == "Enter" && this.query != "") {
     // create call string
     let call = `${this.url_base}weather?q=${this.query}&units=metric&appid=${this.api_key}`;
 
