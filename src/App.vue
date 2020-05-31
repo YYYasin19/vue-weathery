@@ -35,7 +35,10 @@
 
       <div class="error-message" v-if="errorMessage">{{errorMessage}}</div>
     </main>
-    <footer id="footer">Made by _ with _. Share it!</footer>
+    <footer id="footer">
+      Made by
+      <a href="http://www.github.com/yyyasin19" target="_blank">👨🏻‍💻</a> with VueJS
+    </footer>
   </div>
 </template>
 
@@ -253,9 +256,14 @@ main {
   left: 0px;
   right: 0px;
   margin-bottom: 0px;
-  padding: 5px;
+  line-height: 50px;
   transition: var(--trans-speed);
   text-align: center;
+}
+
+#footer a {
+  text-decoration: none;
+  color: white;
 }
 
 #footer:hover {
