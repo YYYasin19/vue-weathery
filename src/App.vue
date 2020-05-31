@@ -16,7 +16,7 @@
       <div class="weather-wrap" v-if="typeof weather.main != 'undefined'">
         <div class="location-box">
           <div class="location">{{weather.name}}</div>
-          <div class="date" v-bind="date">{{date}}</div>
+          <div class="date">{{date}}</div>
         </div>
         <div class="weather-box">
           <div
@@ -32,6 +32,8 @@
         v-if="typeof weather.main == 'undefined'"
         @click="focusSearch"
       >Search for a known city at the top... ⬆️</div>
+
+      <div class="error-message" v-if="errorMessage">{{errorMessage}}</div>
     </main>
     <footer id="footer">Made by _ with _. Share it!</footer>
   </div>
@@ -53,6 +55,7 @@ function fetchWeather(e) {
     // execute async call and update ui
     fetch(call)
       .then(response => {
+        if (!response.ok) throw new Error(response.statusText);
         return response.json();
       })
       .then(data => {
@@ -66,6 +69,13 @@ function fetchWeather(e) {
         let searchBar = document.querySelector(".search-bar");
         searchBar.value = "";
         searchBar.blur();
+
+        // reset the error message
+        this.errorMessage = "";
+      })
+      .catch(err => {
+        // set the error message
+        this.errorMessage = `There was an error at looking up ${this.query}:\n ${err.message}`;
       });
   }
 }
@@ -81,7 +91,8 @@ export default {
       url_base: "https://api.openweathermap.org/data/2.5/",
       query: "",
       weather: {},
-      date: ""
+      date: "",
+      errorMessage: ""
     };
   },
   methods: {
@@ -93,7 +104,7 @@ export default {
 
 <style>
 :root {
-  --border-radius: 8px;
+  --border-radius: 4px;
   --trans-speed: all 0.3s ease;
   --hover-bg-color: rgba(255, 255, 255, 0.75);
 }
@@ -249,5 +260,24 @@ main {
 #footer:hover {
   background-color: var(--hover-bg-color);
   color: rgba(0, 0, 0, 0.9);
+}
+
+.error-message {
+  display: inline-block;
+  padding: 10px 30px;
+  width: 100%;
+  color: white;
+  /* see https://www.mediaevent.de/css-fluid-font-size/*/
+  font-size: calc(18px + (28 - 18) * (100vw - 400px) / (100vw - 400));
+  font-weight: 300;
+  text-shadow: 0.1px 0.4px rgba(0, 0, 0, 0.35);
+  background-color: rgba(255, 0, 0, 0.35);
+  border-radius: var(--border-radius);
+  margin: 1rem 0;
+  transition: var(--trans-speed);
+}
+
+.error-message:hover {
+  background-color: rgba(200, 10, 10, 0.7);
 }
 </style>
