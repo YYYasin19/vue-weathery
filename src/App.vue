@@ -44,7 +44,6 @@
 
 <script>
 import moment from "moment";
-import keys from "../keys";
 
 function currentDate() {
   return moment().format("dddd[, ] Do MMM YYYY [@] hh:mm");
@@ -92,7 +91,7 @@ export default {
   name: "App",
   data: function data() {
     return {
-      api_key: keys.openweather.api_key,
+      api_key: process.env.VUE_APP_OPENWEATHER_API_KEY,
       url_base: "https://api.openweathermap.org/data/2.5/",
       query: "",
       weather: {},
